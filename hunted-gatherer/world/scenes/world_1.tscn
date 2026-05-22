@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c0mmy7t2to7ub"]
+
+[ext_resource type="PackedScene" uid="uid://hak8huj60wjl" path="res://characters/scenes/caveman.tscn" id="1_8bcx7"]
+[ext_resource type="Texture2D" uid="uid://bwkbk64ppxxe7" path="res://icon.svg" id="1_ih0g6"]
+[ext_resource type="PackedScene" uid="uid://bdy0xcanbtywr" path="res://characters/scenes/dino_1.tscn" id="3_wetyk"]
+
+[node name="world1" type="Node2D" unique_id=969941876]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=166384114]
+self_modulate = Color(4.3317675e-07, 0.56060505, 0.27327976, 1)
+position = Vector2(3, 6.0000916)
+scale = Vector2(17.121094, 13.900391)
+texture = ExtResource("1_ih0g6")
+
+[node name="caveman" parent="." unique_id=937982850 groups=["Player"] instance=ExtResource("1_8bcx7")]
+
+[node name="Camera2D" type="Camera2D" parent="caveman" unique_id=1139452290]
+
+[node name="dino1" parent="." unique_id=1716833207 instance=ExtResource("3_wetyk")]
+position = Vector2(-694, -556)
