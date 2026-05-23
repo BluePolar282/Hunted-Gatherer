@@ -1,41 +1,111 @@
 [gd_scene format=3 uid="uid://hak8huj60wjl"]
 
 [ext_resource type="Script" uid="uid://cqhn234ycchtq" path="res://characters/scripts/caveman.gd" id="1_e5tm2"]
-[ext_resource type="Texture2D" uid="uid://bwkbk64ppxxe7" path="res://icon.svg" id="2_mdh67"]
+[ext_resource type="Texture2D" uid="uid://ctfxt7tb2cwdc" path="res://characters/assets/[HUNTER]boonga1.png" id="2_e5tm2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdh67"]
+atlas = ExtResource("2_e5tm2")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5eae"]
-atlas = ExtResource("2_mdh67")
-region = Rect2(0, 0, 128, 128)
+atlas = ExtResource("2_e5tm2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3hog"]
+atlas = ExtResource("2_e5tm2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2l60"]
+atlas = ExtResource("2_e5tm2")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyjcl"]
+atlas = ExtResource("2_e5tm2")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5aget"]
+atlas = ExtResource("2_e5tm2")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4muj"]
+atlas = ExtResource("2_e5tm2")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlvs7"]
+atlas = ExtResource("2_e5tm2")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad1kh"]
+atlas = ExtResource("2_e5tm2")
+region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c3hog"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mdh67")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j5eae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3hog")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2l60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyjcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5aget")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4muj")
+}],
+"loop": true,
+"name": &"eat",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlvs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad1kh")
+}],
+"loop": true,
+"name": &"run",
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2l60"]
-size = Vector2(115, 115)
+size = Vector2(87, 138)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyjcl"]
-size = Vector2(115, 115)
+size = Vector2(86, 138)
 
 [node name="caveman" type="CharacterBody2D" unique_id=937982850]
 script = ExtResource("1_e5tm2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1441824316]
+scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_c3hog")
+animation = &"eat"
+autoplay = "default"
+frame_progress = 0.4763041
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1873595944]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=830699867]
-position = Vector2(0.5, -0.5)
+position = Vector2(-1.5, 11)
 shape = SubResource("RectangleShape2D_x2l60")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1387152850]
-position = Vector2(0.5, -0.5)
+position = Vector2(-2, 11)
 shape = SubResource("RectangleShape2D_lyjcl")
