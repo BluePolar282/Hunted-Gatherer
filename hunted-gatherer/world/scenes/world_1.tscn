@@ -164,23 +164,66 @@ sources/1 = SubResource("TileSetAtlasSource_2ln2r")
 
 [node name="world" type="Node2D" unique_id=969941876]
 script = ExtResource("1_shuch")
-map_width = 100
-map_height = 100
+map_width = 120
+map_height = 120
 noise_scale = 0.015
 island_falloff = 0.5
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1535910910]
 scale = Vector2(10, 10)
+tile_map_data = PackedByteArray(0, 0, 1, 0, 253, 255, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 253, 255, 1, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_ilxy1")
-
-[node name="caveman" parent="." unique_id=937982850 groups=["Player"] instance=ExtResource("1_8bcx7")]
-
-[node name="Camera2D" type="Camera2D" parent="caveman" unique_id=1139452290]
-zoom = Vector2(0.05, 0.05)
 
 [node name="dino1" parent="." unique_id=1716833207 instance=ExtResource("3_wetyk")]
 position = Vector2(-694, -556)
 
-[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=1912138714]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="caveman" parent="." unique_id=937982850 groups=["Player"] instance=ExtResource("1_8bcx7")]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Camera2D" type="Camera2D" parent="caveman" unique_id=1139452290]
+scale = Vector2(0.99999994, 0.99999994)
+zoom = Vector2(0.7, 0.7)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=853127468]
+
+[node name="MapOverlay" type="Control" parent="CanvasLayer" unique_id=1629856373]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="CanvasLayer/MapOverlay" unique_id=79294066]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MapDisplay" type="TextureRect" parent="CanvasLayer/MapOverlay" unique_id=691045157]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2

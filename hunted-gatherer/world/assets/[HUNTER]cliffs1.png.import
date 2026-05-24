@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqwjtrt6u45id"
-path="res://.godot/imported/[HUNTER]boonga1.png-debfca2175b6b651193b73a64b55aa0e.ctex"
+uid="uid://caj8o6f4ivi6f"
+path="res://.godot/imported/[HUNTER]cliffs1.png-50885749298ed8d6f21f3e5653c329af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/assets/[HUNTER]boonga1.png"
-dest_files=["res://.godot/imported/[HUNTER]boonga1.png-debfca2175b6b651193b73a64b55aa0e.ctex"]
+source_file="res://world/assets/[HUNTER]cliffs1.png"
+dest_files=["res://.godot/imported/[HUNTER]cliffs1.png-50885749298ed8d6f21f3e5653c329af.ctex"]
 
 [params]
 
