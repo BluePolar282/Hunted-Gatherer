@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const BASE_SPEED := 400.0
-const SPRINT_SPEED := 650.0
-const WATER_SPEED := 200.0
+const BASE_SPEED := 70.0
+const SPRINT_SPEED := 100.0
+const WATER_SPEED := 30.0
 
 @onready var CURRENT_DIR = "front"
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D

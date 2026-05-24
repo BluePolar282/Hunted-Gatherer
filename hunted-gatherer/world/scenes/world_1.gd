@@ -8,6 +8,8 @@ extends Node2D
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var map_overlay = $CanvasLayer/MapOverlay
 @onready var map_display = $CanvasLayer/MapOverlay/MapDisplay
+@export var foliage_sheet: Texture2D
+@export var tile_size: int = 16
 
 const TERRAIN_SET = 0   # the terrain set both terrains live in
 const TERRAIN_GRASS = 0 # terrain index for grass
@@ -84,6 +86,8 @@ func generate() -> void:
 	
 	spawn_player()
 	map_texture = draw_map()
+	
+	scatter_foliage()
 	
 func spawn_player() -> void:
 	var cx := map_width  / 2.0
@@ -205,3 +209,99 @@ func draw_map() -> ImageTexture:
 				img.set_pixel(px, py, Color(0.448, 0.617, 0.352, 1.0))
 
 	return ImageTexture.create_from_image(img)
+
+#-------------------------------------------------
+
+func scatter_foliage() -> void:
+	for child in $Foliage.get_children():
+		child.queue_free()
+
+	var grass_set := {}
+	for c in grass_cells:
+		grass_set[c] = true
+
+	var objects := [
+		{
+			"name": "tree_medium",
+			"atlas_col": 10,
+			"atlas_row": 0,
+			"width": 5,
+			"height": 5,
+			"density": 0.008,
+			"avoid_shore": true,
+			"offset_y": -24.0,
+		},
+		{
+			"name": "tree_large",
+			"atlas_col": 15,
+			"atlas_row": 0,
+			"width": 5,
+			"height": 5,
+			"density": 0.008,
+			"avoid_shore": true,
+			"offset_y": -24.0,
+		},
+		{
+			"name": "grass_tuft",
+			"atlas_col": 5,
+			"atlas_row": 2,
+			"width": 1,
+			"height": 2,
+			"density": 0.08,
+			"avoid_shore": false,
+			"offset_y": 0.0,
+		},
+		{
+			"name": "rock",
+			"atlas_col": 8,
+			"atlas_row": 4,
+			"width": 2,
+			"height": 1,
+			"density": 0.02,
+			"avoid_shore": false,
+			"offset_y": 0.0,
+		},
+	]
+
+	for c in grass_cells:
+		var is_shore := false
+		for neighbor in [
+			Vector2i(c.x+1, c.y), Vector2i(c.x-1, c.y),
+			Vector2i(c.x, c.y+1), Vector2i(c.x, c.y-1)
+		]:
+			if not grass_set.has(neighbor):
+				is_shore = true
+				break
+
+		for obj in objects:
+			if obj["avoid_shore"] and is_shore:
+				continue
+			if randf() < obj["density"]:
+				spawn_object(c, obj)	# pass the whole dictionary
+				break
+
+func spawn_object(tile: Vector2i, obj: Dictionary) -> void:
+	var sprite := Sprite2D.new()
+	sprite.texture = foliage_sheet
+
+	var w: int = obj["width"]
+	var h: int = obj["height"]
+
+	sprite.region_enabled = true
+	sprite.region_rect = Rect2(
+		obj["atlas_col"] * tile_size,
+		obj["atlas_row"] * tile_size,
+		w * tile_size,
+		h * tile_size
+	)
+
+	# Shift up so the base of the sprite sits on the tile
+	var base_offset := float(-h * tile_size) / 2.0 + float(tile_size) / 2.0
+	sprite.offset = Vector2(0.0, base_offset + obj["offset_y"])
+
+	var world_pos := tilemap.to_global(tilemap.map_to_local(tile))
+	var wiggle := Vector2(randf_range(-3.0, 3.0), randf_range(-3.0, 3.0))
+	sprite.position = world_pos + wiggle
+
+	sprite.name = obj["name"]
+	$Foliage.add_child(sprite)
