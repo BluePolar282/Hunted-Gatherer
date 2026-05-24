@@ -79,7 +79,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ad1kh")
 }],
-"loop": true,
+"loop": false,
 "name": &"run",
 "speed": 7.0
 }]
@@ -96,9 +96,8 @@ script = ExtResource("1_e5tm2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1441824316]
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_c3hog")
-animation = &"eat"
+animation = &"run"
 autoplay = "default"
-frame_progress = 0.4763041
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1873595944]
 
