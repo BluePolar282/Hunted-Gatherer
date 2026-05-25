@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://c0mmy7t2to7ub"]
 
 [ext_resource type="PackedScene" uid="uid://hak8huj60wjl" path="res://characters/scenes/caveman.tscn" id="1_8bcx7"]
-[ext_resource type="Script" uid="uid://bl2mxnj58q3pv" path="res://world/scenes/world_1.gd" id="1_shuch"]
+[ext_resource type="Script" uid="uid://bl2mxnj58q3pv" path="res://world/scripts/world_1.gd" id="1_shuch"]
 [ext_resource type="Texture2D" uid="uid://b4eo4hy52goe" path="res://world/assets/[HUNTER]Environment1.png" id="2_5tjcn"]
-[ext_resource type="PackedScene" uid="uid://bdy0xcanbtywr" path="res://characters/scenes/dino_1.tscn" id="3_wetyk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ln2r"]
 texture = ExtResource("2_5tjcn")
@@ -163,29 +162,16 @@ terrain_set_0/terrain_1/color = Color(0.48716694, 0.76288104, 0.99239904, 1)
 sources/1 = SubResource("TileSetAtlasSource_2ln2r")
 
 [node name="world" type="Node2D" unique_id=969941876]
+y_sort_enabled = true
 script = ExtResource("1_shuch")
-map_width = 120
-map_height = 120
-noise_scale = 0.015
-island_falloff = 0.5
+map_width = 175
+map_height = 175
+island_falloff = 1.0
 foliage_sheet = ExtResource("2_5tjcn")
-
-[node name="scripts" type="Node" parent="." unique_id=1742658872]
-
-[node name="Generator" type="Node2D" parent="scripts" unique_id=576207174]
-
-[node name="PlayerSpawner" type="Node2D" parent="scripts" unique_id=1158433838]
-
-[node name="Decorator" type="Node2D" parent="scripts" unique_id=1009916236]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1535910910]
 tile_map_data = PackedByteArray(0, 0, 1, 0, 253, 255, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 253, 255, 1, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_ilxy1")
-
-[node name="dino1" parent="." unique_id=1716833207 instance=ExtResource("3_wetyk")]
-position = Vector2(-694, -556)
-
-[node name="Foliage" type="Node2D" parent="." unique_id=290411099]
 
 [node name="caveman" parent="." unique_id=937982850 groups=["Player"] instance=ExtResource("1_8bcx7")]
 scale = Vector2(0.99999994, 0.99999994)
@@ -194,46 +180,24 @@ scale = Vector2(0.99999994, 0.99999994)
 scale = Vector2(0.99999994, 0.99999994)
 zoom = Vector2(3.755, 3.755)
 
+[node name="Foliage" type="Node2D" parent="." unique_id=290411099]
+y_sort_enabled = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=853127468]
 
 [node name="MapOverlay" type="Control" parent="CanvasLayer" unique_id=1629856373]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Backdrop" type="ColorRect" parent="CanvasLayer/MapOverlay" unique_id=79294066]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 1160.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.5411765)
 
 [node name="MapDisplay" type="TextureRect" parent="CanvasLayer/MapOverlay" unique_id=691045157]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 500.0
+offset_bottom = 500.0
